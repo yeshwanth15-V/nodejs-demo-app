@@ -56,5 +56,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.yesh1520 }}/nodejs-demo-app:latest
-            ${{ secrets.yesh1520 }}/nodejs-demo-app:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME}}/nodejs-demo-app:latest
+            ${{ secrets.DOCKERHUB_TOKEN}}/nodejs-demo-app:${{ github.sha }}
