@@ -3,9 +3,11 @@ name: Node.js CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -16,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -25,10 +27,10 @@ jobs:
           node-version: 24
           cache: npm
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Run automated tests
+      - name: Run Automated Tests
         run: npm test
 
   build-and-push:
@@ -38,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Docker Buildx
@@ -56,8 +58,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-demo-app:latest
-            ${{ secrets.DOCKERHUB_TOKEN }}/nodejs-demo-app:${{ github.sha }}
-      - name: Verify Docker Hub username
-        run: |
-          echo "Docker Hub username: ${{ secrets.DOCKERHUB_USERNAME }}"
+            yesh1520/nodejs-demo-app:latest
+            yesh1520/nodejs-demo-app:${{ github.sha }}
+
